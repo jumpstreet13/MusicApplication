@@ -7,6 +7,9 @@ import com.smedialink.abakarmagomedov.musicapplication.R
 import com.smedialink.abakarmagomedov.musicapplication.presentation.base.BaseActivity
 import com.smedialink.abakarmagomedov.musicapplication.presentation.feature.player.view.PlayerView
 import com.smedialink.abakarmagomedov.musicapplication.presentation.feature.player.presenter.PlayerPresenter
+import java.io.File
+import android.provider.MediaStore
+
 
 /*
 Add this:
@@ -16,8 +19,11 @@ to builder module
 */
 class PlayerActivity : BaseActivity<PlayerPresenter, PlayerView>(), PlayerView {
 
+    private val MEDIA_PATH = MediaStore.Audio.Media.getContentUri("external").toString()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getPlayList()
     }
 
     @LayoutRes
@@ -25,6 +31,15 @@ class PlayerActivity : BaseActivity<PlayerPresenter, PlayerView>(), PlayerView {
 
     override fun viewCreated() {
 
+    }
+
+    fun getPlayList(): List<String>? {
+        val home = File(MEDIA_PATH)
+
+        for (file in home.listFiles()) {
+            System.out.println(file.name)
+        }
+        return null;
     }
 
 }
