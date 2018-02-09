@@ -13,7 +13,7 @@ import dagger.android.AndroidInjector
 import dagger.Component;
 
 @PerApplication
-@Component(modules = arrayOf(AppModule::class, RxModule::class, NetworkModule::class, AppBuilderModule::class, AndroidSupportInjectionModule::class))
+@Component(modules = [(AppModule::class), (RxModule::class), (NetworkModule::class), (AppBuilderModule::class), (AndroidSupportInjectionModule::class)])
 interface AppComponent : AndroidInjector<App> {
 
     @Component.Builder

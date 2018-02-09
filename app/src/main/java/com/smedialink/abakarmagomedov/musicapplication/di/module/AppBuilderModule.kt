@@ -10,7 +10,7 @@ import dagger.android.ContributesAndroidInjector
 interface AppBuilderModule {
 
     @PerActivity
-    @ContributesAndroidInjector(modules = arrayOf(PlayerViewModule::class))
+    @ContributesAndroidInjector(modules = [(PlayerViewModule::class)])
     fun providePlayerActivityFactory(): PlayerActivity
 
 }
