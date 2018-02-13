@@ -7,11 +7,16 @@ import dagger.Module
 import dagger.Provides
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.annotations.NonNull
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 @Module
 class RxModule {
+
+    @Provides
+    @NonNull
+    fun provideCompositeDisposable() = CompositeDisposable()
 
     @Provides
     @IoScheduler

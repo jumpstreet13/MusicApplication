@@ -7,6 +7,9 @@ import com.smedialink.abakarmagomedov.musicapplication.di.scope.PerApplication
 
 import dagger.Module
 import dagger.Provides
+import com.github.hiteshsondhi88.libffmpeg.FFmpeg
+import javax.inject.Singleton
+
 
 @Module
 class AppModule {
@@ -15,4 +18,9 @@ class AppModule {
     @Provides
     fun provideContext(application: App): Context = application
 
+    @PerApplication
+    @Provides
+    fun provideFFmpeg(application: App): FFmpeg {
+        return FFmpeg.getInstance(application)
+    }
 }

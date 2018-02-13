@@ -6,6 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -39,6 +40,10 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$loggingInterceptorVersion"
     implementation "com.google.dagger:dagger:$daggerVersion"
+    implementation "com.writingminds:FFmpegAndroid:0.3.2"
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.31'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
     implementation("com.github.hotchemi:permissionsdispatcher:$permissionDispatcherVersion") {
         // if you don't use android.app.Fragment you can exclude support for them
         exclude module: "support-v13"
@@ -49,10 +54,6 @@ dependencies {
     kapt "com.github.hotchemi:permissionsdispatcher-processor:$permissionDispatcherVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
 }
 
-/*
-apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-*/
