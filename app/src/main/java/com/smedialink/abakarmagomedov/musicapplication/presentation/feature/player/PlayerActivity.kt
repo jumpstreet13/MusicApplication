@@ -17,10 +17,9 @@ import kotlinx.android.synthetic.main.activity_player.*
 import permissions.dispatcher.NeedsPermission
 import permissions.dispatcher.RuntimePermissions
 import com.github.hiteshsondhi88.libffmpeg.FFmpeg
-import com.smedialink.abakarmagomedov.musicapplication.presentation.feature.player.view.impl.getPlayListWithPermissionCheck
-import com.smedialink.abakarmagomedov.musicapplication.presentation.feature.player.view.impl.onRequestPermissionsResult
 import javax.inject.Inject
 import java.util.*
+import java.util.Arrays.asList
 
 
 @RuntimePermissions
@@ -35,6 +34,7 @@ class PlayerActivity : BaseActivity<PlayerPresenter, PlayerView>(), PlayerView, 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        presenter.loadFfmpeg()
         Log.d("MediaPath", MEDIA_PATH)
         adapter = MusicAdapter(this)
         musicList.adapter = adapter
@@ -57,10 +57,12 @@ class PlayerActivity : BaseActivity<PlayerPresenter, PlayerView>(), PlayerView, 
 
     override fun musicItemClicked(musicPath: String) {
         Toast.makeText(this, musicPath, Toast.LENGTH_SHORT).show()
+        val newFile: String = MEDIA_PATH + "lol.mp4"
+        presenter.execFfmpeg(Arrays.asList(musicPath, newFile).toTypedArray())
     }
 
     override fun loadFfmpegSuccessfully() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun viewCreated() {
@@ -77,7 +79,6 @@ class PlayerActivity : BaseActivity<PlayerPresenter, PlayerView>(), PlayerView, 
             } else {
                 if (listFile[i].absoluteFile.toString().endsWith(".mp3"))
                     filepath.add(listFile[i].absolutePath)
-
             }
         }
     }

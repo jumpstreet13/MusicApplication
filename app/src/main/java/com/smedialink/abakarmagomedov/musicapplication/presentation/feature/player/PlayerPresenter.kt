@@ -17,6 +17,13 @@ class PlayerPresenter @Inject constructor(private val playerUseCase: PlayerUseCa
                 .subscribe({ view?.loadFfmpegSuccessfully() }))
     }
 
+    fun execFfmpeg(commands: Array<String>) {
+        compositeDisposable.add(playerUseCase.execFfmpeg(commands)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ }))
+    }
+
     override fun onStart() {
         super.onStart()
     }
